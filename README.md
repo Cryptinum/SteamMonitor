@@ -19,15 +19,15 @@ Python script to monitor the status of a user.
     pip install -r requirements.txt
     ```
 
+## Configuration
+- Change `steamID` to the ID of a user you want to monitor, the status of the user should be public.
+- Change `period` to the time period you want to monitor, its unit is minute.
+
 ## Run
 - Add python to environment variables (usually auto added after install Python). Run the line below in cmd in the script path.
     ```bash
     python SteamMonitor.py
     ```
-
-## Configuration
-- Change `steamID` to the ID of a user you want to monitor, the status of the user should be public.
-- Change `period` to the time period you want to monitor, its unit is minute.
 
 ## Note
 - There is also a .ipynb version for Jupyter user.
