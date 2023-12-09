@@ -11,7 +11,7 @@ np.set_printoptions(suppress=True)
 warnings.filterwarnings("ignore")  # Suppress warnings.
 pd.options.display.max_rows = 10  # Display no more than 10 rows.
 
-steamID='shiranaiwa'
+steamID = 'shiranaiwa'
 
 urlTemplate = 'https://steamcommunity.com/id/{}'
 url = urlTemplate.format(steamID)
