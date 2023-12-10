@@ -32,7 +32,7 @@ while True:
         page.encoding = "utf-8"
         soup = BeautifulSoup(page.text, "html.parser")
 
-        if page.status_code is 200:
+        if page.status_code == 200:
             now = datetime.now().strftime("%Y-%m-%d %H:%M")
             total = forteenDaysTotal(soup)
             status = statusNow(soup)
