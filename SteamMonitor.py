@@ -23,7 +23,7 @@ headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
 }
 
-previousStatus = [None for _ in range(3)]
+previousStatus = [None for _ in range(4)]
 
 while True:
     try:
@@ -37,12 +37,13 @@ while True:
             total = forteenDaysTotal(soup)
             status = statusNow(soup)
             game = gameNow(soup)
-            nowStatus = [total, status, game]
+            nowStatus = [now, total, status, game]
 
             with open(steamID+'_StatusLog.csv','a') as file:
                 file.write(f'{now},{total},{status},{game}\n')
-            if nowStatus != previousStatus:
+            if nowStatus[2] != previousStatus[2]:
                 with open(steamID+'_ChangeLog.csv', 'a') as changeFile:
+                    changeFile.write(f'{previousStatus[0]},{previousStatus[1]},{previousStatus[2]},{previousStatus[3]}\n')
                     changeFile.write(f'{now},{total},{status},{game}\n')
                 print(f'[{now}],{total},{status} - {game}')
                 previousStatus = nowStatus
