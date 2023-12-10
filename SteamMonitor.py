@@ -41,14 +41,14 @@ while True:
 
             with open(steamID+'_StatusLog.csv','a') as file:
                 file.write(f'{now},{total},{status},{game}\n')
-            if nowStatus[2] != previousStatus[2]:
+            if nowStatus[2:] != previousStatus[2:]:
                 with open(steamID+'_ChangeLog.csv', 'a') as changeFile:
                     changeFile.write(f'{previousStatus[0]},{previousStatus[1]},{previousStatus[2]},{previousStatus[3]}\n')
                     changeFile.write(f'{now},{total},{status},{game}\n')
-                print(f'[{now}],{total},{status} - {game}')
-                previousStatus = nowStatus
+                print(f'[{now}] total={total}, {status} - {game}')
             else:
-                print(f'[{now}],{total},{status} - {game}')
+                print(f'[{now}] total={total}, {status} - {game}')
+            previousStatus = nowStatus
         else:
             print(f'Failed to retrieve data for {steamID}. Status Code: {page.status_code}')
 
