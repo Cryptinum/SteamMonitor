@@ -9,7 +9,8 @@ def forteenDaysTotal(soup):
 
 def statusNow(soup):
     """Current status."""
-    return soup.find_all("div", class_="profile_in_game_header")[0].text.strip()
+    source = soup.find_all("div", class_="profile_in_game_header")
+    return source[0].text.strip() if source else ""
 
 
 def gameNow(soup):
