@@ -1,11 +1,16 @@
 import warnings, requests, time
 from bs4 import BeautifulSoup
+import platform
 
 # import pandas as pd
 # import numpy as np
 from datetime import datetime
 
 from getstatus import *
+
+winTag = platform.system().lower() == 'windows' and platform.version()[0:2] in ['10', '11']
+if winTag:
+    from win11toast import toast
 
 # Global Settings
 # np.set_printoptions(suppress=True)
@@ -46,6 +51,8 @@ while True:
                     changeFile.write(f'{previousStatus[0]},{previousStatus[1]},{previousStatus[2]},{previousStatus[3]}\n')
                     changeFile.write(f'{now},{total},{status},{game}\n')
                 print(f'[{now}] total={total}, {status} - {game}')
+                if winTag:
+                    toast(f'{steamID} - Status changed!', f'Now: {now}\n{status} - {game}\nLast 14 days: {total} h', icon=getIcon(soup), audio={'silent': 'true'},) # notify in win10/11 system
             else:
                 print(f'[{now}] total={total}, {status} - {game}')
             previousStatus = nowStatus
