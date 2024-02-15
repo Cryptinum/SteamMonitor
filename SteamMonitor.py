@@ -44,15 +44,15 @@ while True:
             game = gameNow(soup)
             nowStatus = [now, total, status, game]
 
-            with open(steamID+'_StatusLog.csv','a') as file:
+            with open(steamID+'_StatusLog.csv','a', encoding='utf-8') as file:
                 file.write(f'{now},{total},{status},{game}\n')
             if nowStatus[2:] != previousStatus[2:]:
-                with open(steamID+'_ChangeLog.csv', 'a') as changeFile:
+                with open(steamID+'_ChangeLog.csv', 'a', encoding='utf-8') as changeFile:
                     changeFile.write(f'{previousStatus[0]},{previousStatus[1]},{previousStatus[2]},{previousStatus[3]}\n')
                     changeFile.write(f'{now},{total},{status},{game}\n')
                 print(f'[{now}] total={total}, {status} - {game}')
                 if winTag:
-                    toast(f'{steamID} - Status changed!', f'Now: {now}\n{status} - {game}\nLast 14 days: {total} h', icon=getIcon(soup), audio={'silent': 'true'},) # notify in win10/11 system
+                    toast(f'Status changed', f'Now: {now}\n{status} - {game}\nLast 14 days: {total} h', icon=getIcon(soup), audio={'silent': 'true'},) # notify in win10/11 system
             else:
                 print(f'[{now}] total={total}, {status} - {game}')
             previousStatus = nowStatus
